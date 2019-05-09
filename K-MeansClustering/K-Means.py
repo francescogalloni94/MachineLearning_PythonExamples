@@ -31,3 +31,4 @@ plt.xlabel('Annual Income')
 plt.ylabel('Spending Score')
 plt.legend()
 plt.show()
+
