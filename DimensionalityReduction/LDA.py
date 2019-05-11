@@ -14,13 +14,11 @@ sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
-#Applying PCA
-from sklearn.decomposition import PCA
-pca = PCA(n_components=2)
-X_train = pca.fit_transform(X_train)
-X_test = pca.transform(X_test)
-explained_variance = pca.explained_variance_ratio_
-print(explained_variance)
+#Applying LDA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
+lda = LDA(n_components=2)
+X_train = lda.fit_transform(X_train,y_train)
+X_test = lda.transform(X_test)
 
 
 from sklearn.linear_model import LogisticRegression
@@ -49,8 +47,8 @@ for i,j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j,0],X_set[y_set == j,1],
                 c=ListedColormap(('red','green','blue'))(i),label = j)
 plt.title('Logistic Regression (Training Set)')
-plt.xlabel('PC1')
-plt.ylabel('PC2')
+plt.xlabel('LD1')
+plt.ylabel('LD2')
 plt.legend()
 
 plt.subplot(2,1,2)
@@ -65,8 +63,8 @@ for i,j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[y_set == j,0],X_set[y_set == j,1],
                 c=ListedColormap(('red','green','blue'))(i),label = j)
 plt.title('Logistic Regression (Test Set)')
-plt.xlabel('PC1')
-plt.ylabel('PC2')
+plt.xlabel('LD1')
+plt.ylabel('LD2')
 plt.legend()
 plt.tight_layout()
 plt.show()
